@@ -49,6 +49,11 @@ typedef struct {
 #define GPIO_PIN_NO_14 14
 #define GPIO_PIN_NO_15 15
 
+#define LED_GREEN GPIO_PIN_NO_12
+#define LED_ORANGE GPIO_PIN_NO_13
+#define LED_RED GPIO_PIN_NO_14
+#define LED_BLUE GPIO_PIN_NO_15
+
 
 /*
  * @GPIO_PIN_MODES

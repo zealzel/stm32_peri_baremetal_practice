@@ -1,4 +1,6 @@
+"./Src/001led_toggle.o"
 "./Src/main.o"
+"./Src/mine_first.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"
 "./Startup/startup_stm32f407vgtx.o"
