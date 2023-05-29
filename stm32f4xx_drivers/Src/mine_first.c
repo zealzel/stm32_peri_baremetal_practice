@@ -26,82 +26,82 @@
     "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
-// int main(void) {
-//     // turn on the LED4 (Green) PD12 on the board
-//     GPIO_Handle_t GpioLed4;
-//     GpioLed4.pGPIOx = GPIOD;
-//     GpioLed4.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_12;
-//     GpioLed4.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
-//     GpioLed4.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-//     GpioLed4.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-//     GpioLed4.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-//     GPIO_PeriClockControl(GPIOD, ENABLE);
-//     GPIO_init(&GpioLed4);
-//     GPIO_WriteToOutputPin(GPIOD, LED_GREEN, GPIO_PIN_SET);
+int main(void) {
+    // turn on the LED4 (Green) PD12 on the board
+    GPIO_Handle_t GpioLed4;
+    GpioLed4.pGPIOx = GPIOD;
+    GpioLed4.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_12;
+    GpioLed4.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
+    GpioLed4.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+    GpioLed4.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
+    GpioLed4.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+    GPIO_PeriClockControl(GPIOD, ENABLE);
+    GPIO_init(&GpioLed4);
+    GPIO_WriteToOutputPin(GPIOD, LED_GREEN, GPIO_PIN_SET);
 
-//     // turn on the LED3 (orange) PD13 on the board
-//     GPIO_Handle_t GpioLed3;
-//     GpioLed3.pGPIOx = GPIOD;
-//     GpioLed3.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
-//     GpioLed3.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
-//     GpioLed3.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-//     GpioLed3.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-//     GpioLed3.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-//     GPIO_PeriClockControl(GPIOD, ENABLE);
-//     GPIO_init(&GpioLed3);
-//     GPIO_WriteToOutputPin(GPIOD, LED_ORANGE, GPIO_PIN_SET);
+    // turn on the LED3 (orange) PD13 on the board
+    GPIO_Handle_t GpioLed3;
+    GpioLed3.pGPIOx = GPIOD;
+    GpioLed3.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
+    GpioLed3.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
+    GpioLed3.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+    GpioLed3.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
+    GpioLed3.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+    GPIO_PeriClockControl(GPIOD, ENABLE);
+    GPIO_init(&GpioLed3);
+    GPIO_WriteToOutputPin(GPIOD, LED_ORANGE, GPIO_PIN_SET);
 
-//     // turn on the LED5 (red) PD14 on the board
-//     GPIO_Handle_t GpioLed5;
-//     GpioLed5.pGPIOx = GPIOD;
-//     GpioLed5.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_14;
-//     GpioLed5.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
-//     GpioLed5.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-//     GpioLed5.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-//     GpioLed5.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-//     GPIO_PeriClockControl(GPIOD, ENABLE);
-//     GPIO_init(&GpioLed5);
-//     GPIO_WriteToOutputPin(GPIOD, LED_RED, GPIO_PIN_SET);
+    // turn on the LED5 (red) PD14 on the board
+    GPIO_Handle_t GpioLed5;
+    GpioLed5.pGPIOx = GPIOD;
+    GpioLed5.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_14;
+    GpioLed5.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
+    GpioLed5.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+    GpioLed5.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
+    GpioLed5.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+    GPIO_PeriClockControl(GPIOD, ENABLE);
+    GPIO_init(&GpioLed5);
+    GPIO_WriteToOutputPin(GPIOD, LED_RED, GPIO_PIN_SET);
 
-//     // turn on the LED6 (orange) PD15 on the board
-//     GPIO_Handle_t GpioLed6;
-//     GpioLed6.pGPIOx = GPIOD;
-//     GpioLed6.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_15;
-//     GpioLed6.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
-//     GpioLed6.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-//     GpioLed6.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-//     GpioLed6.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-//     GPIO_PeriClockControl(GPIOD, ENABLE);
-//     GPIO_init(&GpioLed6);
-//     GPIO_WriteToOutputPin(GPIOD, LED_BLUE, GPIO_PIN_SET);
+    // turn on the LED6 (orange) PD15 on the board
+    GPIO_Handle_t GpioLed6;
+    GpioLed6.pGPIOx = GPIOD;
+    GpioLed6.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_15;
+    GpioLed6.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
+    GpioLed6.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+    GpioLed6.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
+    GpioLed6.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+    GPIO_PeriClockControl(GPIOD, ENABLE);
+    GPIO_init(&GpioLed6);
+    GPIO_WriteToOutputPin(GPIOD, LED_BLUE, GPIO_PIN_SET);
 
-//     GPIO_Handle_t GpioButtonUser;
-//     GpioButtonUser.pGPIOx = GPIOA;
-//     GpioButtonUser.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;
-//     GpioButtonUser.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
-//     GpioButtonUser.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-//     GpioButtonUser.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PD;
-//     GPIO_PeriClockControl(GPIOA, ENABLE);
-//     GPIO_init(&GpioButtonUser);
-//     uint8_t button_state = 0;
+    GPIO_Handle_t GpioButtonUser;
+    GpioButtonUser.pGPIOx = GPIOA;
+    GpioButtonUser.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;
+    GpioButtonUser.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
+    GpioButtonUser.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+    GpioButtonUser.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PD;
+    GPIO_PeriClockControl(GPIOA, ENABLE);
+    GPIO_init(&GpioButtonUser);
+    uint8_t button_state = 0;
 
 
-//     printf("I am Kevin Lee\n");
-//     /* Loop forever */
-//     for (;;) {
-//         // delay for 1 second
-//         // for (uint32_t i = 0; i < 500000; i++)
-//         //     ;
+    printf("I am Kevin Lee\n");
+    /* Loop forever */
+    for (;;) {
+        // delay for 1 second
+        // for (uint32_t i = 0; i < 500000; i++)
+        //     ;
 
-//         button_state = GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0);
-//         printf("Button state: %d\n", button_state);
-//         if (button_state == 1) {
-//             GPIO_WriteToOutputPin(GPIOD, LED_GREEN, GPIO_PIN_SET);
-//         } else {
-//             GPIO_WriteToOutputPin(GPIOD, LED_GREEN, GPIO_PIN_RESET);
-//         }
+        button_state = GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0);
+        printf("Button state: %d\n", button_state);
+        if (button_state == 1) {
+            GPIO_WriteToOutputPin(GPIOD, LED_GREEN, GPIO_PIN_SET);
+        } else {
+            GPIO_WriteToOutputPin(GPIOD, LED_GREEN, GPIO_PIN_RESET);
+        }
 
-//         // GPIO_ToggleOutputPin(GPIOD, LED_ORANGE);
-//         // GPIO_ToggleOutputPin(GPIOD, LED_BLUE);
-//     }
-// }
+        // GPIO_ToggleOutputPin(GPIOD, LED_ORANGE);
+        // GPIO_ToggleOutputPin(GPIOD, LED_BLUE);
+    }
+}
