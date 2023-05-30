@@ -15,20 +15,23 @@ int main(void) {
     GpioLed.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
     GpioLed.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
     GpioLed.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-    GPIO_PeriClockControl(GPIOD, ENABLE);
-    GPIO_init(&GpioLed);
+    // GPIO_PeriClockControl(GPIOD, ENABLE);
+    // GPIO_init(&GpioLed);
 
-    GpioBtn.pGPIOx = GPIOA;
-    GpioBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_0;
+    GpioBtn.pGPIOx = GPIOD;
+    GpioBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_5;
     GpioBtn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
     GpioBtn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-    GpioBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-    GPIO_PeriClockControl(GPIOA, ENABLE);
+    GpioBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
+
+    GPIO_PeriClockControl(GPIOD, ENABLE);
+    GPIO_init(&GpioLed);
     GPIO_init(&GpioBtn);
 
+    GPIO_WriteToOutputPin(GPIOD, GPIO_PIN_NO_12, GPIO_PIN_RESET);
+
     while (1) {
-        if (GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0) == 1) {
-            // handle debouncing
+        if (GPIO_ReadFromInputPin(GPIOD, GPIO_PIN_NO_5) == BTN_PRESSED) {
             delay();
             GPIO_ToggleOutputPin(GPIOD, GPIO_PIN_NO_12);
         }

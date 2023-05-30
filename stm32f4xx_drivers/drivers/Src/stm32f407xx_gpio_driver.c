@@ -108,13 +108,16 @@ void GPIO_init(GPIO_Handle_t* pGPIOHandle) {
         pGPIOHandle->pGPIOx->PUPDR |= temp;
         temp = 0;
 
-        // 4. Configure the output type
-        temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType
-                << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
-        pGPIOHandle->pGPIOx->OTYPER &=
-            ~(0x1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber); // clearing
-        pGPIOHandle->pGPIOx->OTYPER |= temp;
-        temp = 0;
+        if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_OUT) {
+            // 4. Configure the output type
+            temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType
+                    << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+            pGPIOHandle->pGPIOx->OTYPER &=
+                ~(0x1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber); // clearing
+            pGPIOHandle->pGPIOx->OTYPER |= temp;
+            temp = 0;
+        }
+
         // 5. Configure the alternate functionality
         if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_ALTFN) {
             // Configure the alternate function register

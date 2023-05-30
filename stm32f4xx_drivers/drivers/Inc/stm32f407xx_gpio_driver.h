@@ -91,6 +91,8 @@ typedef struct {
 #define GPIO_PIN_PU 1
 #define GPIO_PIN_PD 2
 
+#define BTN_PRESSED 0
+
 /******************************************
  * APIs supported by this driver
  * For more information about the APIs check the function definitions
