@@ -17,7 +17,13 @@
  */
 
 
+#include "stm32f407xx_gpio_driver.h"
 int main(void) {
     for (;;) {
     }
 }
+
+void EXTI0_IRQHandler(void) {
+    GPIO_IRQHandling(0);
+}
+

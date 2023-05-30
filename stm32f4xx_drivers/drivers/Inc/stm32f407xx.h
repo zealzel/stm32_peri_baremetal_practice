@@ -2,6 +2,24 @@
 
 #define __vo volatile
 
+/* processor specific details */
+/* ARM Cortex Mx processor NVIC ISERx register addresses */
+#define NVIC_ISER0          ((__vo uint32_t*)0xE000E100)
+#define NVIC_ISER1          ((__vo uint32_t*)0xE000E104)
+#define NVIC_ISER2          ((__vo uint32_t*)0xE000E108)
+#define NVIC_ISER3          ((__vo uint32_t*)0xE000E10C)
+
+/* ARM Cortex Mx processor NVIC ICERx register addresses */
+#define NVIC_ICER0          ((__vo uint32_t*)0xE000E180)
+#define NVIC_ICER1          ((__vo uint32_t*)0xE000E184)
+#define NVIC_ICER2          ((__vo uint32_t*)0xE000E188)
+#define NVIC_ICER3          ((__vo uint32_t*)0xE000E18C)
+
+/* ARM Cortex Mx processor priority register address calculation */
+#define NVIC_PR_BASE_ADDR   ((__vo uint32_t*)0xE000E400)
+#define NO_PR_BITS_IMPLEMENTED  4
+
+
 #ifndef INC_STM32F407XX_H_
 #define INC_STM32F407XX_H_
 
@@ -77,6 +95,10 @@ typedef struct {
 #define GPIOG       ((GPIO_RegDef_t*)GPIOG_BASEADDR)
 #define GPIOH       ((GPIO_RegDef_t*)GPIOH_BASEADDR)
 #define GPIOI       ((GPIO_RegDef_t*)GPIOI_BASEADDR)
+#define RCC         ((RCC_RegDef_t*)RCC_BASEADDR)
+#define EXTI        ((EXTI_RegDef_t*)EXTI_BASEADDR)
+#define SYSCFG      ((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
+
 
 
 /* Peripheral register definition structures for RCC */
@@ -117,8 +139,39 @@ typedef struct {
     __vo uint32_t DCKCFGR2;      // RCC dedicated clocks configuration register 2, offset: 0x94
 } RCC_RegDef_t;
 
-/* peripheral definition (peripheral base addresses typecasted to xxx_RegDef_t) */
-#define RCC         ((RCC_RegDef_t*)RCC_BASEADDR)
+
+/* Peripheral register definition structures for EXTI */
+typedef struct {
+    uint8_t EXTI_IMR;   // Interrupt mask register
+    uint8_t EXTI_EMR;   // Event mask register
+    uint8_t EXTI_RTSR;  // Rising trigger selection register
+    uint8_t EXTI_FTSR;  // Falling trigger selection register
+    uint8_t EXTI_SWIER; // Software interrupt event register
+    uint8_t EXTI_PR;    // Pending register
+} EXTI_RegDef_t;
+
+/* peripheral register definition structures for SYSCFG */
+typedef struct {
+    __vo uint32_t MEMRMP;       // SYSCFG memory remap register, offset: 0x00
+    __vo uint32_t PMC;          // SYSCFG peripheral mode configuration register, offset: 0x04
+    __vo uint32_t EXTICR[4];    // SYSCFG external interrupt configuration register 1, offset: 0x08
+    uint32_t      RESERVED1[2]; // Reserved
+    __vo uint32_t CMPCR;        // Compensation cell control register, offset: 0x20
+    uint32_t      RESERVED2[2]; // Reserved
+    __vo uint32_t CFGR;         // SYSCFG configuration register, offset: 0x2C
+} SYSCFG_RegDef_t;
+
+/* NVIC register definition structure */
+typedef struct {
+    __vo uint32_t ISER[8];  // Interrupt Set Enable Register
+    __vo uint32_t ICER[8];  // Interrupt Clear Enable Register
+    __vo uint32_t ISPR[8];  // Interrupt Set Pending Register
+    __vo uint32_t ICPR[8];  // Interrupt Clear Pending Register
+    __vo uint32_t IABR[8];  // Interrupt Active bit Register
+    __vo uint32_t IPR[60];  // Interrupt Priority Register
+} NVIC_RegDef_t;
+
+
 
 /* Clock Enable Macros for GPIOx peripherals */
 #define GPIOA_PCLK_EN()         (RCC->AHB1ENR |= (1 << 0))
@@ -178,6 +231,28 @@ typedef struct {
 #define GPIOG_REG_RESET() do{(RCC->AHB1RSTR |= (1 << 6)); (RCC->AHB1RSTR &= ~(1 << 6));}while(0)
 #define GPIOH_REG_RESET() do{(RCC->AHB1RSTR |= (1 << 7)); (RCC->AHB1RSTR &= ~(1 << 7));}while(0)
 #define GPIOI_REG_RESET() do{(RCC->AHB1RSTR |= (1 << 8)); (RCC->AHB1RSTR &= ~(1 << 8));}while(0)
+
+
+/* Returns port code for given GPIOx base address */
+#define GPIO_BASEADDR_TO_CODE(x)   ((x == GPIOA) ? 0 :\
+                                     (x == GPIOB) ? 1 :\
+                                     (x == GPIOC) ? 2 :\
+                                     (x == GPIOD) ? 3 :\
+                                     (x == GPIOE) ? 4 :\
+                                     (x == GPIOF) ? 5 :\
+                                     (x == GPIOG) ? 6 :\
+                                     (x == GPIOH) ? 7 :\
+                                     (x == GPIOI) ? 8 :0)
+
+/* IRQ(Interrupt Request) Numbers of STM32F407x MCU */
+#define IRQ_NO_EXTI0            6
+#define IRQ_NO_EXTI1            7
+#define IRQ_NO_EXTI2            8
+#define IRQ_NO_EXTI3            9
+#define IRQ_NO_EXTI4            10
+#define IRQ_NO_EXTI9_5          23
+#define IRQ_NO_EXTI15_10        40
+
 
 /* Some generic macros */
 #define ENABLE                  1
