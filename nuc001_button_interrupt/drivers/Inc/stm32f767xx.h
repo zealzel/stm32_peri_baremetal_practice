@@ -20,14 +20,21 @@
 #define NO_PR_BITS_IMPLEMENTED  4
 
 
-#ifndef INC_STM32F407XX_H_
-#define INC_STM32F407XX_H_
+#ifndef INC_STM32F767XX_H_
+#define INC_STM32F767XX_H_
 
-#define FLASH_BASEADDR      0x08000000U
-#define SRAM1_BASEADDR      0x20000000U // 112kB (112KiB)
-#define SRAM2_BASEADDR      0x2001C000U // 16kB (16KiB)
+/* memory base addresses map to stm32f767xx.h */
+#define FLASH_BASEADDR      0x08000000U // 1MB (1MiB)
+#define SRAM1_BASEADDR      0x20020000U // 368kB (368KiB)
+#define SRAM2_BASEADDR      0x2007C000U // 16kB (16KiB)
 #define ROM_BASEADDR        0x1FFF0000U // System memory
 #define SRAM                SRAM1_BASEADDR
+
+// #define FLASH_BASEADDR      0x08000000U
+// #define SRAM1_BASEADDR      0x20000000U // 112kB (112KiB)
+// #define SRAM2_BASEADDR      0x2001C000U // 16kB (16KiB)
+// #define ROM_BASEADDR        0x1FFF0000U // System memory
+// #define SRAM                SRAM1_BASEADDR
 
 /*
  * AHBx and APBx Bus Peripheral base addresses
@@ -266,4 +273,4 @@ typedef struct {
 #define GPIO_PIN_SET            SET
 #define GPIO_PIN_RESET          RESET
 
-#endif /* INC_STM32F407XX_H_ */
+#endif /* INC_STM32F767XX_H_ */

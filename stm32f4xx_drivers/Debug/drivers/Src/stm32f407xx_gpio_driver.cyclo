@@ -7,5 +7,5 @@ stm32f407xx_gpio_driver.c:234:6:GPIO_WriteToOutputPin	2
 stm32f407xx_gpio_driver.c:244:6:GPIO_WriteToOutputPort	1
 stm32f407xx_gpio_driver.c:246:6:GPIO_ToggleOutputPin	1
 stm32f407xx_gpio_driver.c:262:6:GPIO_IRQInterruptConfig	12
-stm32f407xx_gpio_driver.c:300:6:GPIO_IRQPriorityConfig	1
-stm32f407xx_gpio_driver.c:311:6:GPIO_IRQHandling	2
+stm32f407xx_gpio_driver.c:301:6:GPIO_IRQPriorityConfig	1
+stm32f407xx_gpio_driver.c:314:6:GPIO_IRQHandling	2
