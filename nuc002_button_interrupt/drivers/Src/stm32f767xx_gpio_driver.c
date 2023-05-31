@@ -1,11 +1,11 @@
 /*
- * stm32f407xx_gpio_driver.c
+ * stm32f767xx_gpio_driver.c
  *
  *  Created on: May 28, 2023
  *      Author: zealzel
  */
 
-#include "stm32f407xx_gpio_driver.h"
+#include "stm32f767xx_gpio_driver.h"
 
 /* Peripheral Clock setup */
 
@@ -92,6 +92,26 @@ void GPIO_init(GPIO_Handle_t* pGPIOHandle) {
         pGPIOHandle->pGPIOx->MODER |= temp;
         temp = 0;
 
+        if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_OUT) {
+            // 4. Configure the output type
+            temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType
+                    << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
+            pGPIOHandle->pGPIOx->OTYPER &=
+                ~(0x1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber); // clearing
+            pGPIOHandle->pGPIOx->OTYPER |= temp;
+            temp = 0;
+        }
+
+        // 5. Configure the alternate functionality
+        if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_ALTFN) {
+            // Configure the alternate function register
+            uint8_t temp1, temp2;
+            temp1 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber / 8;
+            temp2 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber % 8;
+            pGPIOHandle->pGPIOx->AFR[temp1] &= ~(0xF << (4 * temp2)); // clearing
+            pGPIOHandle->pGPIOx->AFR[temp1] |=
+                (pGPIOHandle->GPIO_PinConfig.GPIO_PinAltFunMode << (4 * temp2));
+        }
     } else {
         // This part will code later. (Interrupt mode)
         if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_IT_FT) {
@@ -136,27 +156,6 @@ void GPIO_init(GPIO_Handle_t* pGPIOHandle) {
         ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); // clearing
     pGPIOHandle->pGPIOx->PUPDR |= temp;
     temp = 0;
-
-    if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_OUT) {
-        // 4. Configure the output type
-        temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType
-                << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
-        pGPIOHandle->pGPIOx->OTYPER &=
-            ~(0x1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber); // clearing
-        pGPIOHandle->pGPIOx->OTYPER |= temp;
-        temp = 0;
-    }
-
-    // 5. Configure the alternate functionality
-    if (pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_ALTFN) {
-        // Configure the alternate function register
-        uint8_t temp1, temp2;
-        temp1 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber / 8;
-        temp2 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber % 8;
-        pGPIOHandle->pGPIOx->AFR[temp1] &= ~(0xF << (4 * temp2)); // clearing
-        pGPIOHandle->pGPIOx->AFR[temp1] |=
-            (pGPIOHandle->GPIO_PinConfig.GPIO_PinAltFunMode << (4 * temp2));
-    }
 }
 
 /*********************************************************************
@@ -285,6 +284,7 @@ void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi) {
         }
     }
     uint8_t as;
+    as = 1;
 }
 
 /*********************************************************************

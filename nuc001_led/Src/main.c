@@ -75,3 +75,4 @@ int main(void) {
         GPIO_ToggleOutputPin(GPIOB, GPIO_PIN_NO_14);
     }
 }
+

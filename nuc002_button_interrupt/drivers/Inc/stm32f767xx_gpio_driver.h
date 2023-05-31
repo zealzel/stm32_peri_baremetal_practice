@@ -1,14 +1,14 @@
 /*
- * stm32f407xx_gpio_driver.h
+ * stm32f767xx_gpio_driver.h
  *
  *  Created on: May 28, 2023
  *      Author: zealzel
  */
 
-#ifndef INC_STM32F407XX_GPIO_DRIVER_H_
-#define INC_STM32F407XX_GPIO_DRIVER_H_
+#ifndef INC_STM32F767XX_GPIO_DRIVER_H_
+#define INC_STM32F767XX_GPIO_DRIVER_H_
 
-#include "stm32f407xx.h"
+#include "stm32f767xx.h"
 
 /* Handle structure for GPIO pin */
 typedef struct {
@@ -120,4 +120,4 @@ void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi);
 void GPIO_IRQPriorityConfig(uint8_t IRQNumber, uint32_t IRQPriority);
 void GPIO_IRQHandling(uint8_t PinNumber);
 
-#endif /* INC_STM32F407XX_GPIO_DRIVER_H_ */
+#endif /* INC_STM32F767XX_GPIO_DRIVER_H_ */

@@ -26,11 +26,11 @@ int main(void) {
     GpioBtn.pGPIOx = GPIOC; GpioBtn.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_15;
 
     GpioBtn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IT_FT;
-    // GpioBtn.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IT_RT;
     GpioBtn.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
-    // GpioBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
-    GpioBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
-    GPIO_PeriClockControl(GPIOD, ENABLE);
+    GpioBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PIN_PU;
+    // GpioBtn.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+    // GPIO_PeriClockControl(GPIOD, ENABLE);
+    GPIO_PeriClockControl(GPIOC, ENABLE);
     GPIO_init(&GpioBtn);
 
     // IRQ Configurations
